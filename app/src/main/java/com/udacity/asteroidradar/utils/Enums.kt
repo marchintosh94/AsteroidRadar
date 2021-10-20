@@ -5,4 +5,10 @@ object Enums {
         LOADING,
         DONE
     }
+
+    enum class AsteroidFilter {
+        WEEK,
+        TODAY,
+        ALL
+    }
 }

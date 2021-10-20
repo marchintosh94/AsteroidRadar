@@ -28,7 +28,9 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/placeholder_picture_of_day"/>
+                app:picassoImage="@{viewModel.pictureOfDay.url}"
+                app:srcCompat="@drawable/placeholder_picture_of_day"
+                android:contentDescription="@{viewModel.pictureOfDay.title}" />
 
             <TextView
                 android:id="@+id/textView"
@@ -40,7 +42,7 @@
                 android:textSize="20sp"
                 android:layout_gravity="bottom"
                 android:background="#55010613"
-                android:text="@string/image_of_the_day" />
+                android:text="@{viewModel.pictureOfDay.title}" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -50,10 +52,17 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day_layout"
-            app:layout_constraintVertical_bias="0.0" />
+             />
+
+        <include
+            android:id="@+id/no_results"
+            layout="@layout/no_results"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ProgressBar
             android:id="@+id/status_loading_wheel"
@@ -62,8 +71,8 @@
             android:indeterminate="true"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

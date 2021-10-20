@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.udacity.asteroidradar.domain.Asteroid" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="10dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/default_page_margin"
+            android:layout_marginStart="@dimen/default_page_margin"
+            android:layout_marginBottom="@dimen/default_page_margin"
+            android:background="@drawable/asteroid_list_item_line"
+            tools:backgroundTint="@color/potentially_hazardous"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:listItemBar="@{item.potentiallyHazardous}"
+            />
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_page_margin"
+            android:layout_marginEnd="@dimen/sm_page_margin"
+            app:layout_constraintTop_toTopOf="@+id/divider"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/hazard_icon"
+            android:textColor="@color/default_text_color"
+            app:asteroidListTitle="@{item.code}"
+            tools:text="Abcdefg"/>
+
+        <TextView
+            android:id="@+id/approach_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{item.closeApproachDate}"
+            android:textColor="@color/default_text_color"
+            app:layout_constraintBottom_toBottomOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            app:layout_constraintStart_toStartOf="@+id/item_title"
+            tools:text="10/12/2021" />
+
+        <ImageView
+            android:id="@+id/hazard_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/default_page_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:potentiallyHazardous="@{item.potentiallyHazardous}"
+            tools:src="@drawable/ic_status_potentially_hazardous" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

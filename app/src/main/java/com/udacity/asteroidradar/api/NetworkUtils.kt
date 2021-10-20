@@ -2,7 +2,9 @@ package com.udacity.asteroidradar.api
 
 import com.udacity.asteroidradar.api.AsteroidDTO
 import com.udacity.asteroidradar.utils.Constants
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -14,7 +16,12 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<AsteroidDTO> {
 
     val nextSevenDaysFormattedDates = getNextSevenDaysFormattedDates()
     for (formattedDate in nextSevenDaysFormattedDates) {
-        val dateAsteroidJsonArray = nearEarthObjectsJson.getJSONArray(formattedDate)
+        var dateAsteroidJsonArray: JSONArray = JSONArray()
+        try {
+            dateAsteroidJsonArray = nearEarthObjectsJson.getJSONArray(formattedDate)
+        } catch (ex: Exception){
+
+        }
 
         for (i in 0 until dateAsteroidJsonArray.length()) {
             val asteroidJson = dateAsteroidJsonArray.getJSONObject(i)
