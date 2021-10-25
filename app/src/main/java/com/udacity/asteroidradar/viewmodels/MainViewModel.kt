@@ -61,6 +61,7 @@ class MainViewModel(application: Application) : ViewModel() {
                 Enums.AsteroidFilter.TODAY -> repository.refreshAsteroids(endDate = Utils.getToday())
                 else -> repository.refreshAsteroids()
             }
+            repository.refreshPictureOfDay()
         }
     }
 

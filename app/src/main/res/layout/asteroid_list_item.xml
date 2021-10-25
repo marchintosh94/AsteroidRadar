@@ -26,16 +26,17 @@
             app:listItemBar="@{item.potentiallyHazardous}"
             />
 
+        <!-- content description in bind adapter-->
         <TextView
             android:id="@+id/item_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_page_margin"
             android:layout_marginEnd="@dimen/sm_page_margin"
+            style="@style/AppTheme.Title"
             app:layout_constraintTop_toTopOf="@+id/divider"
             app:layout_constraintStart_toEndOf="@+id/divider"
             app:layout_constraintEnd_toStartOf="@+id/hazard_icon"
-            android:textColor="@color/default_text_color"
             app:asteroidListTitle="@{item.code}"
             tools:text="Abcdefg"/>
 
@@ -44,12 +45,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{item.closeApproachDate}"
-            android:textColor="@color/default_text_color"
+            android:contentDescription="@{item.closeApproachDate}"
             app:layout_constraintBottom_toBottomOf="@+id/divider"
+            style="@style/AppTheme.Subtitle"
             app:layout_constraintEnd_toEndOf="@id/item_title"
             app:layout_constraintStart_toStartOf="@+id/item_title"
             tools:text="10/12/2021" />
 
+        <!-- content description in bind adapter-->
         <ImageView
             android:id="@+id/hazard_icon"
             android:layout_width="24dp"

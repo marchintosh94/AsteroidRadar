@@ -18,9 +18,9 @@ class FetchNewDataWorker(appContext: Context, params: WorkerParameters): Corouti
         val database = getDatabaseInstance(applicationContext)
         val repository = AsteroidRadarRepository(database, applicationContext)
         return try {
+            database.asteroidDao.deleteYesterdayAsteroids()
             repository.refreshAsteroids(Utils.getToday())
             repository.refreshPictureOfDay()
-            database.asteroidDao.deleteYesterdayAsteroids()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()

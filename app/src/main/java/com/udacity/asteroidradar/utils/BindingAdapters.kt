@@ -35,31 +35,35 @@ fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
 @BindingAdapter("astronomicalUnitText")
 fun bindTextViewToAstronomicalUnit(textView: TextView, number: Double) {
     val context = textView.context
-    textView.text = String.format(context.getString(R.string.astronomical_unit_format), number)
+    val text = String.format(context.getString(R.string.astronomical_unit_format), number)
+    textView.text = text
+    textView.contentDescription = text
 }
 
 @BindingAdapter("kmUnitText")
 fun bindTextViewToKmUnit(textView: TextView, number: Double) {
     val context = textView.context
-    textView.text = String.format(context.getString(R.string.km_unit_format), number)
+    val text = String.format(context.getString(R.string.km_unit_format), number)
+    textView.text = text
+    textView.contentDescription = String.format(context.getString(R.string.km_unit_format), number)
 }
 
 @BindingAdapter("velocityText")
 fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
     val context = textView.context
-    textView.text = String.format(context.getString(R.string.km_s_unit_format), number)
+    val text = String.format(context.getString(R.string.km_s_unit_format), number)
+    textView.text = text
+    textView.contentDescription = text
 }
 
 @BindingAdapter("picassoImage")
 fun bindImagePicasso(imageView: ImageView, url: String?){
-    url?.let {
-        val uri = url.toUri().buildUpon().scheme("https").build()
-        Picasso.get()
-            .load(uri)
-            .placeholder(R.drawable.asteroid_placeholder)
-            .error(R.drawable.asteroid_placeholder)
-            .into(imageView)
-    }
+    val uri = ( url ?: "").toUri().buildUpon().scheme("https").build()
+    Picasso.get()
+        .load(uri)
+        .placeholder(R.drawable.asteroid_placeholder)
+        .error(R.drawable.asteroid_placeholder)
+        .into(imageView)
 }
 @BindingAdapter("glideImage")
 fun bindImageGlide(imageView: ImageView, url: String?){
@@ -91,6 +95,9 @@ fun bindImageGlide(imageView: ImageView, potentiallyHazardous: Boolean?){
             .placeholder(R.drawable.asteroid_placeholder)
             .error(R.drawable.asteroid_placeholder)
             .into(imageView)
+        val context = imageView.context
+        imageView.contentDescription = if (it) context.getString(R.string.potentially_hazardous_asteroid_icon)
+        else context.getString(R.string.not_hazardous_asteroid_icon)
     }
 }
 
@@ -106,5 +113,7 @@ fun bindListItemBarColor(view: View, potentiallyHazardous: Boolean?){
 
 @BindingAdapter("asteroidListTitle")
 fun bindAsteroidListTitle(textView: TextView, code: String?){
-    textView.text = textView.context.getString(R.string.asteroid, code)
+    val text = textView.context.getString(R.string.asteroid, code)
+    textView.text = text
+    textView.contentDescription = text
 }

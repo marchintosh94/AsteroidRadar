@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#CBD0D5</color>
+    <color name="colorPrimary">#010613</color>
     <color name="colorPrimaryDark">#010613</color>
     <color name="colorAccent">#FF8282</color>
-    <color name="app_background">#FFF7F8</color>
-    <color name="default_text_color">#2D2E32</color>
+    <color name="app_background">#010613</color>
+    <color name="default_text_color">#FFFFFF</color>
     <color name="potentially_hazardous">#FF8282</color>
+    <color name="blur_image_header">#55010613</color>
     <color name="safe">#82FF88</color>
-    <color name="blur_image_header">#85FFFFFF</color>
 </resources>

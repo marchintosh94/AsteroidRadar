@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
+import com.udacity.asteroidradar.domain.PictureOfDay
 import com.udacity.asteroidradar.utils.Enums
 import com.udacity.asteroidradar.viewmodels.MainViewModel
 
@@ -33,6 +34,7 @@ class MainFragment : Fragment() {
         viewModel.loader.observe(viewLifecycleOwner){ status ->
             status?.let {
                 binding.statusLoadingWheel.visibility = if (status == Enums.LoaderStatus.LOADING) View.VISIBLE else View.GONE
+                binding.noResults.noResultsView.visibility = if (status == Enums.LoaderStatus.LOADING || viewModel.asteroids.value?.size ?: 1 > 0) View.GONE else View.VISIBLE
             }
         }
 
@@ -64,7 +66,13 @@ class MainFragment : Fragment() {
         viewModel.asteroids.observe(viewLifecycleOwner){
             binding.noResults.noResultsView.visibility = if (it.size <= 0) View.VISIBLE else View.GONE
             it?.let {
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(viewModel.pictureOfDay.value ?: PictureOfDay(), it)
+            }
+        }
+
+        viewModel.pictureOfDay.observe(viewLifecycleOwner){
+            it?.let {
+                adapter.addHeaderAndSubmitList(it, viewModel.asteroids.value)
             }
         }
 

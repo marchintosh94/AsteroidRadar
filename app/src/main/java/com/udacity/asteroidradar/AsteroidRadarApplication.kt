@@ -33,12 +33,12 @@ class AsteroidRadarApplication: Application() {
                 }
             }.build()
         val repeatingRequest = PeriodicWorkRequestBuilder<FetchNewDataWorker>(
-            30,
-            TimeUnit.SECONDS
+            1,
+            TimeUnit.DAYS
         )
             .setConstraints(constraints)
             .build()
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
+        WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
             FetchNewDataWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
             repeatingRequest
